@@ -9,16 +9,13 @@
                 </button>
             </div>
             <div class="modal-body" id="modal-body" name="modal-body">
-                <form action="modal_dialogs\create_record.php" method="post">
-                    <!-- <div style="width: 40%;">
-                        <select class="form-control" id="module" name="module">
-                            <option value="">Select module</option>
+                <form action="modal_dialogs\create_record.php" method="post" id="test1">
+                    <div style="width: 40%;">
+                        <select class="form-control" id="module1" name="module1">
+                            <option value="">--Select module--</option>
                             <?php echo fill_module($conn); ?>
                         </select>
                     </div>
-                    <br> -->
-                    <label for="module_id">Module:</label><br>
-                    <input type="text" name="module_id"><br>
                     <label for="title">Title:</label><br>
                     <input type="text" name="title"><br>
                     <label for="description">Descr:</label><br>
@@ -32,3 +29,20 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#module1').change(function() {
+            var module_id = $(this).val();
+            var data = ({ "name": "module_id", "value": module_id });
+            if (data != '') {
+                console.log(data);
+                $.ajax({
+                    url: "modal_dialogs/create_record.php",
+                    method: "POST",
+                    data: data
+                });
+            }
+        });
+    });
+</script>

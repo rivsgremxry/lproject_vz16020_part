@@ -1,7 +1,7 @@
 <?PHP
-include 'fill_module.php';
-include 'fill_actor.php';
-include 'fill_requirement.php';
+include 'fill_dashboard/fill_module.php';
+include 'fill_dashboard/fill_actor.php';
+include 'fill_dashboard/fill_requirement.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -23,7 +23,7 @@ include 'fill_requirement.php';
                 <li class="pr-4 pt-2 pb-2">
                     <div>
                         <select class="form-control" id="module" name="module">
-                            <option value="">Show All Requirements</option>
+                            <option value="">--Show All Requirements--</option>
                             <?php echo fill_module($conn); ?>
                         </select>
                     </div>
@@ -31,6 +31,7 @@ include 'fill_requirement.php';
                 <li class="pr-4 pt-2 pb-2">
                     <div>
                         <select class="form-control" id="actor" name="actor">
+                            <option value="">--Actors--</option>
                             <?php echo fill_actor($conn); ?>
                         </select>
                     </div>
@@ -47,8 +48,8 @@ include 'fill_requirement.php';
         </div>
     </nav>
 
-    <div class="container" style="margin-left: 4%; padding-top: 20px;">
-        <div class="row" id="show_requirement">
+    <div class="container" style="margin-left: 4%; padding-top: 20px; padding-right: 30%">
+        <div class="row" id="show_requirement" name="show_requirement">
             <?php echo fill_requirement($conn); ?>
         </div>
     </div>
@@ -75,6 +76,45 @@ include 'fill_requirement.php';
                         $('#show_requirement').html(data);
                     }
                 });
+            });
+        });
+
+        $(document).ready(function() {
+            $('#module').change(function() {
+                var module_id = $(this).val();
+                if (module_id != '') {
+                    console.log({
+                        "name": "module_id",
+                        "value": module_id
+                    });
+                }
+            });
+        });
+
+        $(document).ready(function() {
+            $('#actor').change(function() {
+                var actor_id = $(this).val();
+                if (actor_id != '') {
+                    console.log({
+                        "name": "actor_id",
+                        "value": actor_id
+                    });
+                }
+            });
+        });
+
+        $("#show_requirement").on('click', function() {
+            var requirement_title = "";
+            $(":checkbox").each(function() {
+                var ischecked = $(this).is(":checked");
+                if (ischecked) {
+                    // checkbox_value += $(this).val() + " | ";
+                    requirement_title = $(this).val();
+                    console.log({
+                        "name": "requirement_title",
+                        "value": requirement_title
+                    });
+                }
             });
         });
     </script>
