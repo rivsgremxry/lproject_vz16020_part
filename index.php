@@ -31,7 +31,7 @@ include 'fill_dashboard/fill_requirement.php';
                 <li class="pr-4 pt-2 pb-2">
                     <div>
                         <select class="form-control" id="actor" name="actor">
-                            <option value="">--Actors--</option>
+                            <option value="">--Actor list--</option>
                             <?php echo fill_actor($conn); ?>
                         </select>
                     </div>
