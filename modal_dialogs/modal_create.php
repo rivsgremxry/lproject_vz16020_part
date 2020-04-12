@@ -10,12 +10,23 @@
             </div>
             <div class="modal-body" id="modal-body" name="modal-body">
                 <form action="modal_dialogs\create_record.php" method="post" id="test1">
-                    <div style="width: 40%;">
+                    <div style="width: 50%;">
                         <select class="form-control" id="module1" name="module1">
                             <option value="">--Select module--</option>
                             <?php echo fill_module($conn); ?>
                         </select>
+                            <br>
+                        <select class="form-control" id="actor1" name="actor1">
+                            <option value="">--Actors--</option>
+                            <?php echo fill_actor($conn); ?>
+                        </select>
                     </div>
+                    <!-- <div>
+                        <select class="form-control" id="actor1" name="actor">
+                            <option value="">--Actors--</option>
+                            <?php echo fill_actor($conn); ?>
+                        </select>
+                    </div> -->
                     <label for="title">Title:</label><br>
                     <input type="text" name="title"><br>
                     <label for="description">Descr:</label><br>
@@ -37,6 +48,24 @@
             var data = ({
                 "name": "module_id",
                 "value": module_id
+            });
+            if (data != '') {
+                console.log(data);
+                $.ajax({
+                    url: "modal_dialogs/create_record.php",
+                    method: "POST",
+                    data: data
+                });
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        $('#actor1').change(function() {
+            var actor_id = $(this).val();
+            var data = ({
+                "name": "actor_id",
+                "value": actor_id
             });
             if (data != '') {
                 console.log(data);
