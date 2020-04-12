@@ -102,21 +102,6 @@ include 'fill_dashboard/fill_requirement.php';
                 }
             });
         });
-
-        $("#show_requirement").on('click', function() {
-            var requirement_title = "";
-            $(":checkbox").each(function() {
-                var ischecked = $(this).is(":checked");
-                if (ischecked) {
-                    // checkbox_value += $(this).val() + " | ";
-                    requirement_title = $(this).val();
-                    console.log({
-                        "name": "requirement_title",
-                        "value": requirement_title
-                    });
-                }
-            });
-        });
     </script>
 </body>
 
