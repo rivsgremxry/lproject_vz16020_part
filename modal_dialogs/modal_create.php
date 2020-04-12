@@ -34,7 +34,10 @@
     $(document).ready(function() {
         $('#module1').change(function() {
             var module_id = $(this).val();
-            var data = ({ "name": "module_id", "value": module_id });
+            var data = ({
+                "name": "module_id",
+                "value": module_id
+            });
             if (data != '') {
                 console.log(data);
                 $.ajax({

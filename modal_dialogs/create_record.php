@@ -1,6 +1,5 @@
 <?php
 require("../connection.php");
-include '../fill_module.php';
 
 if (isset($_POST["module1"])) {
     $module_id = $_POST['module1'];
