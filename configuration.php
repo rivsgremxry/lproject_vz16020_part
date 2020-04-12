@@ -2,5 +2,5 @@
     $hostname = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "app-test-db-1";
+    $dbname = "app-test-db-3";
 ?>
