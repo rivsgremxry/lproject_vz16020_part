@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2020 at 09:58 AM
+-- Generation Time: Apr 12, 2020 at 04:38 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -70,26 +70,20 @@ CREATE TABLE `requirement` (
   `id` int(11) NOT NULL,
   `requirement_title` varchar(50) NOT NULL,
   `requirement_description` text NOT NULL,
-  `module_id` int(11) NOT NULL
+  `module_id` int(11) NOT NULL,
+  `actor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `requirement`
 --
 
-INSERT INTO `requirement` (`id`, `requirement_title`, `requirement_description`, `module_id`) VALUES
-(1, 'Requirement 1-1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, nisl eget dignissim commodo, dolor nibh aliquet diam, eu congue lacus nibh a purus. Praesent placerat, justo eu convallis accumsan, eros nisl pretium libero, a fermentum risus orci non lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse mattis accumsan eros nec vehicula. Nam ultrices enim sed rutrum eleifend. Curabitur suscipit imperdiet velit, nec aliquam neque placerat eu. Nullam nec interdum ante. Fusce condimentum sit amet diam id suscipit. Nam venenatis tempus justo ac porttitor. Etiam nec magna massa.', 1),
-(2, 'Requirement 2-1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, nisl eget dignissim commodo, dolor nibh aliquet diam, eu congue lacus nibh a purus. Praesent placerat, justo eu convallis accumsan, eros nisl pretium libero, a fermentum risus orci non lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse mattis accumsan eros nec vehicula. Nam ultrices enim sed rutrum eleifend. Curabitur suscipit imperdiet velit, nec aliquam neque placerat eu. Nullam nec interdum ante. Fusce condimentum sit amet diam id suscipit. Nam venenatis tempus justo ac porttitor. Etiam nec magna massa.', 1),
-(3, 'Requirement 3-1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, nisl eget dignissim commodo, dolor nibh aliquet diam, eu congue lacus nibh a purus. Praesent placerat, justo eu convallis accumsan, eros nisl pretium libero, a fermentum risus orci non lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse mattis accumsan eros nec vehicula. Nam ultrices enim sed rutrum eleifend. Curabitur suscipit imperdiet velit, nec aliquam neque placerat eu. Nullam nec interdum ante. Fusce condimentum sit amet diam id suscipit. Nam venenatis tempus justo ac porttitor. Etiam nec magna massa.', 1),
-(4, 'Requirement 4-1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, nisl eget dignissim commodo, dolor nibh aliquet diam, eu congue lacus nibh a purus. Praesent placerat, justo eu convallis accumsan, eros nisl pretium libero, a fermentum risus orci non lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse mattis accumsan eros nec vehicula. Nam ultrices enim sed rutrum eleifend. Curabitur suscipit imperdiet velit, nec aliquam neque placerat eu. Nullam nec interdum ante. Fusce condimentum sit amet diam id suscipit. Nam venenatis tempus justo ac porttitor. Etiam nec magna massa.', 1),
-(5, 'Requirement 1-2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, nisl eget dignissim commodo, dolor nibh aliquet diam, eu congue lacus nibh a purus. Praesent placerat, justo eu convallis accumsan, eros nisl pretium libero, a fermentum risus orci non lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse mattis accumsan eros nec vehicula. Nam ultrices enim sed rutrum eleifend. Curabitur suscipit imperdiet velit, nec aliquam neque placerat eu. Nullam nec interdum ante. Fusce condimentum sit amet diam id suscipit. Nam venenatis tempus justo ac porttitor. Etiam nec magna massa.', 2),
-(6, 'Requirement 2-2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, nisl eget dignissim commodo, dolor nibh aliquet diam, eu congue lacus nibh a purus. Praesent placerat, justo eu convallis accumsan, eros nisl pretium libero, a fermentum risus orci non lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse mattis accumsan eros nec vehicula. Nam ultrices enim sed rutrum eleifend. Curabitur suscipit imperdiet velit, nec aliquam neque placerat eu. Nullam nec interdum ante. Fusce condimentum sit amet diam id suscipit. Nam venenatis tempus justo ac porttitor. Etiam nec magna massa.', 2),
-(7, 'Requirement 3-2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, nisl eget dignissim commodo, dolor nibh aliquet diam, eu congue lacus nibh a purus. Praesent placerat, justo eu convallis accumsan, eros nisl pretium libero, a fermentum risus orci non lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse mattis accumsan eros nec vehicula. Nam ultrices enim sed rutrum eleifend. Curabitur suscipit imperdiet velit, nec aliquam neque placerat eu. Nullam nec interdum ante. Fusce condimentum sit amet diam id suscipit. Nam venenatis tempus justo ac porttitor. Etiam nec magna massa.', 2),
-(8, 'Test', 'askjajsfa', 1),
-(78, 'asda', 'asdasd', 1),
-(80, 'asdas', 'asdasd', 1),
-(83, 'BBBB', 'BBBBBBBBBBBB', 2),
-(85, 'TEST', 'MUAAHHAHA', 2);
+INSERT INTO `requirement` (`id`, `requirement_title`, `requirement_description`, `module_id`, `actor_id`) VALUES
+(1, 'Requirement 1-1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue magna nibh, eu congue tellus faucibus a. Sed nibh ante, dictum sit amet mi quis, porttitor congue nisi. Sed efficitur leo velit, non rutrum enim mattis quis. Pellentesque a elementum odio. Sed non mauris ac massa iaculis imperdiet id vel dolor. Phasellus ornare felis et sem ornare, in laoreet ante varius. Nam interdum blandit risus vel malesuada.', 1, 1),
+(2, 'Requirement 2-1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue magna nibh, eu congue tellus faucibus a. Sed nibh ante, dictum sit amet mi quis, porttitor congue nisi. Sed efficitur leo velit, non rutrum enim mattis quis. Pellentesque a elementum odio. Sed non mauris ac massa iaculis imperdiet id vel dolor. Phasellus ornare felis et sem ornare, in laoreet ante varius. Nam interdum blandit risus vel malesuada.', 1, 1),
+(3, 'Requirement 2-2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue magna nibh, eu congue tellus faucibus a. Sed nibh ante, dictum sit amet mi quis, porttitor congue nisi. Sed efficitur leo velit, non rutrum enim mattis quis. Pellentesque a elementum odio. Sed non mauris ac massa iaculis imperdiet id vel dolor. Phasellus ornare felis et sem ornare, in laoreet ante varius. Nam interdum blandit risus vel malesuada.', 2, 1),
+(4, 'Requirement 1-2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue magna nibh, eu congue tellus faucibus a. Sed nibh ante, dictum sit amet mi quis, porttitor congue nisi. Sed efficitur leo velit, non rutrum enim mattis quis. Pellentesque a elementum odio. Sed non mauris ac massa iaculis imperdiet id vel dolor. Phasellus ornare felis et sem ornare, in laoreet ante varius. Nam interdum blandit risus vel malesuada.', 2, 2),
+(12, 'm1a1', 'ajsdjkasd', 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -112,7 +106,8 @@ ALTER TABLE `module`
 --
 ALTER TABLE `requirement`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `module_id` (`module_id`);
+  ADD KEY `module_id` (`module_id`),
+  ADD KEY `actor_id` (`actor_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -122,7 +117,7 @@ ALTER TABLE `requirement`
 -- AUTO_INCREMENT for table `actor`
 --
 ALTER TABLE `actor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `module`
@@ -134,7 +129,7 @@ ALTER TABLE `module`
 -- AUTO_INCREMENT for table `requirement`
 --
 ALTER TABLE `requirement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
@@ -144,7 +139,8 @@ ALTER TABLE `requirement`
 -- Constraints for table `requirement`
 --
 ALTER TABLE `requirement`
-  ADD CONSTRAINT `requirement_ibfk_1` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
+  ADD CONSTRAINT `requirement_ibfk_1` FOREIGN KEY (`actor_id`) REFERENCES `actor` (`id`),
+  ADD CONSTRAINT `requirement_ibfk_2` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
