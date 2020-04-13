@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2020 at 04:38 PM
+-- Generation Time: Apr 13, 2020 at 09:07 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -83,7 +83,7 @@ INSERT INTO `requirement` (`id`, `requirement_title`, `requirement_description`,
 (2, 'Requirement 2-1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue magna nibh, eu congue tellus faucibus a. Sed nibh ante, dictum sit amet mi quis, porttitor congue nisi. Sed efficitur leo velit, non rutrum enim mattis quis. Pellentesque a elementum odio. Sed non mauris ac massa iaculis imperdiet id vel dolor. Phasellus ornare felis et sem ornare, in laoreet ante varius. Nam interdum blandit risus vel malesuada.', 1, 1),
 (3, 'Requirement 2-2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue magna nibh, eu congue tellus faucibus a. Sed nibh ante, dictum sit amet mi quis, porttitor congue nisi. Sed efficitur leo velit, non rutrum enim mattis quis. Pellentesque a elementum odio. Sed non mauris ac massa iaculis imperdiet id vel dolor. Phasellus ornare felis et sem ornare, in laoreet ante varius. Nam interdum blandit risus vel malesuada.', 2, 1),
 (4, 'Requirement 1-2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue magna nibh, eu congue tellus faucibus a. Sed nibh ante, dictum sit amet mi quis, porttitor congue nisi. Sed efficitur leo velit, non rutrum enim mattis quis. Pellentesque a elementum odio. Sed non mauris ac massa iaculis imperdiet id vel dolor. Phasellus ornare felis et sem ornare, in laoreet ante varius. Nam interdum blandit risus vel malesuada.', 2, 2),
-(12, 'm1a1', 'ajsdjkasd', 1, 1);
+(12, 'm1a1', '', 1, 1);
 
 --
 -- Indexes for dumped tables
