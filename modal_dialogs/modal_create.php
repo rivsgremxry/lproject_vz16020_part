@@ -15,7 +15,7 @@
                             <option value="">--Select module--</option>
                             <?php echo fill_module($conn); ?>
                         </select>
-                            <br>
+                        <br>
                         <select class="form-control" id="actor1" name="actor1">
                             <option value="">--Select actor--</option>
                             <?php echo fill_actor($conn); ?>
@@ -37,38 +37,30 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        var module_id, module_data;
         $('#module1').change(function() {
-            var module_id = $(this).val();
-            var data = ({
+            module_id = $(this).val();
+            module_data = ({
                 "name": "module_id",
                 "value": module_id
             });
-            if (data != '') {
-                console.log(data);
-                $.ajax({
-                    url: "modal_dialogs/create_record.php",
-                    method: "POST",
-                    data: data
-                });
-            }
         });
-    });
 
-    $(document).ready(function() {
         $('#actor1').change(function() {
-            var actor_id = $(this).val();
-            var data = ({
+            actor_id = $(this).val();
+            actor_data = ({
                 "name": "actor_id",
                 "value": actor_id
             });
-            if (data != '') {
-                console.log(data);
-                $.ajax({
-                    url: "modal_dialogs/create_record.php",
-                    method: "POST",
-                    data: data
-                });
-            }
         });
+
+        if (module_data && actor_data != '') {
+            $.ajax({
+                url: "modal_dialogs/create_record.php",
+                method: "POST",
+                data: module_data,
+                actor_data
+            });
+        }
     });
 </script>
