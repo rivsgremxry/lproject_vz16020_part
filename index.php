@@ -41,8 +41,7 @@ include 'fill_dashboard/fill_requirement.php';
                         Create </button>
                 </li>
                 <li class="pt-2 pb-2">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#saveChanges">
-                        Save </button>
+                    <button type="button" name="test" class="btn btn-success" id="test" onclick="changes_update()">Save</button>
                 </li>
             </ul>
         </div>
@@ -54,11 +53,11 @@ include 'fill_dashboard/fill_requirement.php';
         </div>
     </div>
 
+    <div id="result" style="display: none;"></div>
+
     <?php
 
     include 'modal_dialogs\modal_create.php';
-
-    include 'modal_dialogs\modal_save.php';
 
     ?>
 
@@ -80,28 +79,37 @@ include 'fill_dashboard/fill_requirement.php';
         });
 
         $(document).ready(function() {
-            $('#module').change(function() {
-                var module_id = $(this).val();
-                if (module_id != '') {
-                    console.log({
-                        "name": "module_id",
-                        "value": module_id
-                    });
-                }
+            var actor_id, requirements;
+
+            $('#actor').change(function() {
+                actor_id = $(this).val();
+            });
+
+            $("#show_requirement").on('click', function() {
+                requirements = [];
+                $(':checkbox').each(function() {
+                    if ($(this).is(":checked")) {
+                        requirements.push($(this).val());
+                    }
+                });
+                requirements = requirements.toString();
+                $.ajax({
+                    url: "modal_dialogs/save_changes.php",
+                    method: "POST",
+                    data: {
+                        requirements: requirements,
+                        actor_id: actor_id
+                    },
+                    success: function(data) {
+                        $('#result').html(data);
+                    }
+                });
             });
         });
 
-        $(document).ready(function() {
-            $('#actor').change(function() {
-                var actor_id = $(this).val();
-                if (actor_id != '') {
-                    console.log({
-                        "name": "actor_id",
-                        "value": actor_id
-                    });
-                }
-            });
-        });
+        function changes_update(){
+            location.reload();
+        }
     </script>
 </body>
 
