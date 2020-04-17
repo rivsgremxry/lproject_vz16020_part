@@ -40,9 +40,9 @@ include 'fill_dashboard/fill_requirement.php';
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createFunction">
                         Create </button>
                 </li>
-                <li class="pt-2 pb-2">
+                <!-- <li class="pt-2 pb-2">
                     <button type="button" name="test" class="btn btn-success" id="test" onclick="changes_update()">Save</button>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>
@@ -102,14 +102,16 @@ include 'fill_dashboard/fill_requirement.php';
                     },
                     success: function(data) {
                         $('#result').html(data);
+                        alert('Record updated successfully!');
+                        location.reload();
                     }
                 });
             });
         });
 
-        function changes_update(){
-            location.reload();
-        }
+        // function changes_update(){
+        //     location.reload();
+        // }
     </script>
 </body>
 
