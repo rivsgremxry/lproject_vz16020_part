@@ -43,9 +43,9 @@ include 'fill_dashboard/fill_requirement.php';
                 <!-- <li class="pt-2 pb-2">
                     <button type="button" name="test" class="btn btn-success" id="test" onclick="changes_update()">Save</button>
                 </li> -->
-                <!-- <li class="pt-2 pb-2">
+                <li class="pt-2 pb-2">
                     <button type="button" class="btn btn-success" onclick="redirect_to_graphical_part()">Use case graphical tool</button>
-                </li> -->
+                </li>
             </ul>
         </div>
     </nav>
@@ -116,9 +116,9 @@ include 'fill_dashboard/fill_requirement.php';
         //     location.reload();
         // }
 
-        // function redirect_to_graphical_part(){
-        //     window.location.replace("http://localhost/lproject_vz16020_part/grapheditor/index.php");
-        // }
+        function redirect_to_graphical_part(){
+            window.location.replace("http://localhost/lproject_vz16020_part/mxgraph/examples/grapheditor/www/index.php");
+        }
     </script>
 </body>
 
