@@ -5884,7 +5884,7 @@ DiagramFormatPanel.prototype.addStyleOps = function(div)
 {
 	var btn = mxUtils.button(mxResources.get('editData'), mxUtils.bind(this, function(evt)
 	{
-		this.editorUi.actions.get('editData').funct();
+		// this.editorUi.actions.get('editData').funct();
 	}));
 	
 	btn.setAttribute('title', mxResources.get('editData') + ' (' + this.editorUi.actions.get('editData').shortcut + ')');
@@ -5896,7 +5896,7 @@ DiagramFormatPanel.prototype.addStyleOps = function(div)
 	
 	btn = mxUtils.button(mxResources.get('clearDefaultStyle'), mxUtils.bind(this, function(evt)
 	{
-		this.editorUi.actions.get('clearDefaultStyle').funct();
+		// this.editorUi.actions.get('clearDefaultStyle').funct();
 	}));
 	
 	btn.setAttribute('title', mxResources.get('clearDefaultStyle') + ' (' + this.editorUi.actions.get('clearDefaultStyle').shortcut + ')');
