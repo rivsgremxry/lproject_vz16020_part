@@ -194,12 +194,6 @@ Menus.prototype.init = function()
 			this.customFontSizes.push(newValue);
 		}));
 	})));
-	this.put('direction', new Menu(mxUtils.bind(this, function(menu, parent)
-	{
-		menu.addItem(mxResources.get('flipH'), null, function() { graph.toggleCellStyles(mxConstants.STYLE_FLIPH, false); }, parent);
-		menu.addItem(mxResources.get('flipV'), null, function() { graph.toggleCellStyles(mxConstants.STYLE_FLIPV, false); }, parent);
-		this.addMenuItems(menu, ['-', 'rotation'], parent);
-	})));
 	this.put('align', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
 		menu.addItem(mxResources.get('leftAlign'), null, function() { graph.alignCells(mxConstants.ALIGN_LEFT); }, parent);
@@ -431,26 +425,15 @@ Menus.prototype.init = function()
 	this.put('arrange', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
 		this.addMenuItems(menu, ['toFront', 'toBack', '-'], parent);
-		this.addSubmenu('direction', menu, parent);
 		this.addMenuItems(menu, ['turn', '-'], parent);
-		this.addSubmenu('align', menu, parent);
-		this.addSubmenu('distribute', menu, parent);
 		menu.addSeparator(parent);
-		this.addSubmenu('navigation', menu, parent);
-		this.addSubmenu('insert', menu, parent);
-		this.addSubmenu('layout', menu, parent);
-		this.addMenuItems(menu, ['-', 'group', 'ungroup', 'removeFromGroup', '-', 'clearWaypoints', 'autosize'], parent);
+		this.addMenuItems(menu, ['-', 'group', 'ungroup'], parent);
 	}))).isEnabled = isGraphEnabled;
-	this.put('insert', new Menu(mxUtils.bind(this, function(menu, parent)
-	{
-		this.addMenuItems(menu, ['insertLink', 'insertImage'], parent);
-	})));
 	this.put('view', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
 		this.addMenuItems(menu, ((this.editorUi.format != null) ? ['formatPanel'] : []).
-			concat(['outline', 'layers', '-', 'pageView', 'pageScale', '-', 'scrollbars', 'tooltips', '-',
-			        'grid', 'guides', '-', 'connectionArrows', 'connectionPoints', '-',
-			        'resetView', 'zoomIn', 'zoomOut'], parent));
+			concat(['-', 'pageView', '-', 'scrollbars', 'tooltips', '-',
+			        'grid', 'guides', '-', 'connectionArrows', 'connectionPoints',], parent));
 	})));
 	// Two special dropdowns that are only used in the toolbar
 	this.put('viewPanels', new Menu(mxUtils.bind(this, function(menu, parent)
@@ -460,12 +443,12 @@ Menus.prototype.init = function()
 			this.addMenuItems(menu, ['formatPanel'], parent);
 		}
 		
-		this.addMenuItems(menu, ['outline', 'layers'], parent);
+		// this.addMenuItems(menu, ['outline', 'layers'], parent);
 	})));
 	this.put('viewZoom', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
 		this.addMenuItems(menu, ['resetView', '-'], parent);
-		var scales = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3, 4];
+		var scales = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2];
 		
 		for (var i = 0; i < scales.length; i++)
 		{
@@ -477,18 +460,14 @@ Menus.prototype.init = function()
 				}, parent);
 			})(scales[i]);
 		}
-
-		this.addMenuItems(menu, ['-', 'fitWindow', 'fitPageWidth', 'fitPage', 'fitTwoPages', '-', 'customZoom'], parent);
 	})));
 	this.put('file', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
-		this.addMenuItems(menu, ['new', 'open', '-', 'save', 'saveAs', '-', 'import', 'export', '-', 'pageSetup', 'print'], parent);
+		this.addMenuItems(menu, ['new', 'open', '-', 'save', 'saveAs', '-', 'import', 'export', '-'], parent);
 	})));
 	this.put('edit', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
-		this.addMenuItems(menu, ['undo', 'redo', '-', 'cut', 'copy', 'paste', 'delete', '-', 'duplicate', '-',
-		                         'editData', 'editTooltip', 'editStyle', '-', 'edit', '-', 'editLink', 'openLink', '-',
-		                         'selectVertices', 'selectEdges', 'selectAll', 'selectNone', '-', 'lockUnlock']);
+		this.addMenuItems(menu, ['undo', 'redo', '-', 'cut', 'copy', 'paste', 'delete', '-', 'duplicate', '-', 'selectAll']);
 	})));
 	this.put('extras', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
@@ -1054,10 +1033,8 @@ Menus.prototype.createPopupMenu = function(menu, cell, evt)
 	
 	this.addPopupMenuHistoryItems(menu, cell, evt);
 	this.addPopupMenuEditItems(menu, cell, evt);
-	this.addPopupMenuStyleItems(menu, cell, evt);
 	this.addPopupMenuArrangeItems(menu, cell, evt);
 	this.addPopupMenuCellItems(menu, cell, evt);
-	this.addPopupMenuSelectionItems(menu, cell, evt);
 };
 
 /**
@@ -1083,21 +1060,6 @@ Menus.prototype.addPopupMenuEditItems = function(menu, cell, evt)
 	else
 	{
 		this.addMenuItems(menu, ['delete', '-', 'cut', 'copy', '-', 'duplicate'], null, evt);
-	}
-};
-
-/**
- * Creates the keyboard event handler for the current graph and history.
- */
-Menus.prototype.addPopupMenuStyleItems = function(menu, cell, evt)
-{
-	if (this.editorUi.editor.graph.getSelectionCount() == 1)
-	{
-		this.addMenuItems(menu, ['-', 'setAsDefaultStyle'], null, evt);
-	}
-	else if (this.editorUi.editor.graph.isSelectionEmpty())
-	{
-		this.addMenuItems(menu, ['-', 'clearDefaultStyle'], null, evt);
 	}
 };
 
@@ -1171,29 +1133,6 @@ Menus.prototype.addPopupMenuCellItems = function(menu, cell, evt)
 		{
 			this.addMenuItems(menu, ['-', 'clearWaypoints'], null, evt);
 		}
-	
-		if (graph.getSelectionCount() == 1)
-		{
-			this.addMenuItems(menu, ['-', 'editStyle', 'editData', 'editLink'], null, evt);
-	
-			// Shows edit image action if there is an image in the style
-			if (graph.getModel().isVertex(cell) && mxUtils.getValue(state.style, mxConstants.STYLE_IMAGE, null) != null)
-			{
-				menu.addSeparator();
-				this.addMenuItem(menu, 'image', null, evt).firstChild.nextSibling.innerHTML = mxResources.get('editImage') + '...';
-			}
-		}
-	}
-};
-
-/**
- * Creates the keyboard event handler for the current graph and history.
- */
-Menus.prototype.addPopupMenuSelectionItems = function(menu, cell, evt)
-{
-	if (this.editorUi.editor.graph.isSelectionEmpty())
-	{
-		this.addMenuItems(menu, ['-', 'selectVertices', 'selectEdges', 'selectAll'], null, evt);
 	}
 };
 
