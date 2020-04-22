@@ -615,12 +615,12 @@ BaseFormatPanel.prototype.createPanel = function () {
 	var div = document.createElement('div');
 	div.className = 'geFormatSection';
 	div.style.padding = '12px 0px 12px 18px';
-////////////////////////////////////////
-//////////////////////////////////
-///////////////////////////////////
-/////////////////////////////////////
-/////////////////////////////////////
-///////////////////////////////////////////
+	////////////////////////////////////////
+	//////////////////////////////////
+	///////////////////////////////////
+	/////////////////////////////////////
+	/////////////////////////////////////
+	///////////////////////////////////////////
 	return div;
 };
 
@@ -2839,89 +2839,6 @@ TextFormatPanel.prototype.addFont = function (container) {
 		// container.appendChild(spacingPanel);
 	}
 	else {
-		var selState = null;
-		var lineHeightInput = null;
-
-		container.appendChild(this.createRelativeOption(mxResources.get('lineheight'), null, null, function (input) {
-			var value = (input.value == '') ? 120 : parseInt(input.value);
-			value = Math.max(0, (isNaN(value)) ? 120 : value);
-
-			if (selState != null) {
-				graph.cellEditor.restoreSelection(selState);
-				selState = null;
-			}
-
-			var selectedElement = graph.getSelectedElement();
-			var node = selectedElement;
-
-			while (node != null && node.nodeType != mxConstants.NODETYPE_ELEMENT) {
-				node = node.parentNode;
-			}
-
-			if (node != null && node == graph.cellEditor.textarea && graph.cellEditor.textarea.firstChild != null) {
-				if (graph.cellEditor.textarea.firstChild.nodeName != 'P') {
-					graph.cellEditor.textarea.innerHTML = '<p>' + graph.cellEditor.textarea.innerHTML + '</p>';
-				}
-
-				node = graph.cellEditor.textarea.firstChild;
-			}
-
-			if (node != null && graph.cellEditor.textarea != null && node != graph.cellEditor.textarea &&
-				graph.cellEditor.textarea.contains(node)) {
-				node.style.lineHeight = value + '%';
-			}
-
-			input.value = value + ' %';
-		}, function (input) {
-			// Used in CSS handler to update current value
-			lineHeightInput = input;
-
-			// KNOWN: Arrow up/down clear selection text in quirks/IE 8
-			// Text size via arrow button limits to 16 in IE11. Why?
-			mxEvent.addListener(input, 'mousedown', function () {
-				if (document.activeElement == graph.cellEditor.textarea) {
-					selState = graph.cellEditor.saveSelection();
-				}
-			});
-
-			mxEvent.addListener(input, 'touchstart', function () {
-				if (document.activeElement == graph.cellEditor.textarea) {
-					selState = graph.cellEditor.saveSelection();
-				}
-			});
-
-			input.value = '120 %';
-		}));
-
-		// var insertPanel = stylePanel.cloneNode(false);
-		// insertPanel.style.paddingLeft = '0px';
-		// var insertBtns = this.editorUi.toolbar.addItems(['link', 'image'], insertPanel, true);
-
-		// var btns = [
-		//         this.editorUi.toolbar.addButton('geSprite-horizontalrule', mxResources.get('insertHorizontalRule'),
-		// 		function()
-		// 		{
-		// 			document.execCommand('inserthorizontalrule', false);
-		// 		}, insertPanel),				
-		// 		this.editorUi.toolbar.addMenuFunctionInContainer(insertPanel, 'geSprite-table', mxResources.get('table'), false, mxUtils.bind(this, function(menu)
-		// 		{
-		// 			this.editorUi.menus.addInsertTableItem(menu);
-		// 		}))];
-		// this.styleButtons(insertBtns);
-		// this.styleButtons(btns);
-
-		// var wrapper2 = this.createPanel();
-		// wrapper2.style.paddingTop = '10px';
-		// wrapper2.style.paddingBottom = '10px';
-		// wrapper2.appendChild(this.createTitle(mxResources.get('insert')));
-		// wrapper2.appendChild(insertPanel);
-		// container.appendChild(wrapper2);
-
-		// if (mxClient.IS_QUIRKS)
-		// {
-		// 	wrapper2.style.height = '70';
-		// }
-
 		var tablePanel = stylePanel.cloneNode(false);
 		tablePanel.style.paddingLeft = '0px';
 
@@ -2994,12 +2911,6 @@ TextFormatPanel.prototype.addFont = function (container) {
 				}), tablePanel)];
 		this.styleButtons(btns);
 		btns[2].style.marginRight = '9px';
-
-		// var wrapper3 = this.createPanel();
-		// wrapper3.style.paddingTop = '10px';
-		// wrapper3.style.paddingBottom = '10px';
-		// wrapper3.appendChild(this.createTitle(mxResources.get('table')));
-		// wrapper3.appendChild(tablePanel);
 
 		if (mxClient.IS_QUIRKS) {
 			mxUtils.br(container);
@@ -3101,16 +3012,6 @@ TextFormatPanel.prototype.addFont = function (container) {
 				}, tablePanel2)];
 		this.styleButtons(btns);
 		btns[2].style.marginRight = '9px';
-
-		if (mxClient.IS_QUIRKS) {
-			mxUtils.br(wrapper3);
-			mxUtils.br(wrapper3);
-		}
-
-		// wrapper3.appendChild(tablePanel2);
-		// container.appendChild(wrapper3);
-
-		// tableWrapper = wrapper3;
 	}
 
 	function setSelected(elt, selected) {
@@ -3387,15 +3288,6 @@ TextFormatPanel.prototype.addFont = function (container) {
 								}
 								else {
 									input.value = (isNaN(fontSize)) ? '' : fontSize + ' pt';
-								}
-
-								var lh = parseFloat(lineHeight);
-
-								if (!isNaN(lh)) {
-									lineHeightInput.value = Math.round(lh * 100) + ' %';
-								}
-								else {
-									lineHeightInput.value = '100 %';
 								}
 							}
 
@@ -3763,17 +3655,6 @@ StyleFormatPanel.prototype.addFill = function (container) {
 		mxEvent.consume(evt);
 	});
 
-	// container.appendChild(fillPanel);
-	// container.appendChild(gradientPanel);
-
-	// Adds custom colors
-	// var custom = this.getCustomColors();
-
-	// for (var i = 0; i < custom.length; i++)
-	// {
-	// 	container.appendChild(this.createCellColorOption(custom[i].title, custom[i].key, custom[i].defaultValue));
-	// }
-
 	return container;
 };
 
@@ -3822,7 +3703,7 @@ StyleFormatPanel.prototype.addStroke = function (container) {
 	var label = (ss.style.shape == 'image') ? mxResources.get('border') : mxResources.get('line');
 
 	var lineColor = this.createCellColorOption(label, strokeKey, '#000000');
-	lineColor.appendChild(styleSelect);
+	// lineColor.appendChild(styleSelect);
 	colorPanel.appendChild(lineColor);
 
 	// Used if only edges selected
@@ -3832,7 +3713,7 @@ StyleFormatPanel.prototype.addStroke = function (container) {
 	stylePanel.style.position = 'relative';
 	stylePanel.style.paddingLeft = '16px'
 	stylePanel.style.marginBottom = '2px';
-	stylePanel.style.marginTop = '2px';
+	stylePanel.style.marginTop = '10px';
 	stylePanel.className = 'geToolbarContainer';
 
 	var addItem = mxUtils.bind(this, function (menu, width, cssName, keys, values) {
@@ -4492,16 +4373,16 @@ DiagramFormatPanel.prototype.addView = function (div) {
 
 			btn.style.position = 'absolute';
 			btn.className = 'geColorBtn';
-			btn.style.marginTop = '-4px';
+			btn.style.marginTop = '4px';
 			btn.style.paddingBottom = (document.documentMode == 11 || mxClient.IS_MT) ? '0px' : '2px';
 			btn.style.height = '22px';
 			btn.style.right = (mxClient.IS_QUIRKS) ? '52px' : '72px';
 			btn.style.width = '56px';
 
-			bg.appendChild(btn);
+			// bg.appendChild(btn);
 		}
 
-		div.appendChild(bg);
+		// div.appendChild(bg);
 	}
 
 	return div;
