@@ -40,9 +40,11 @@ include 'fill_dashboard/fill_requirement.php';
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createFunction">
                         Create </button>
                 </li>
-                <!-- <li class="pt-2 pb-2">
-                    <button type="button" name="test" class="btn btn-success" id="test" onclick="changes_update()">Save</button>
-                </li> -->
+                <li class="pr-4 pt-2 pb-2" id="updateRequirementActor">
+                    <div>
+                        <button class="sbmt btn btn-primary">Atjaunot prasības izpildītāju</button>
+                    </div>
+                </li>
                 <li class="pt-2 pb-2">
                     <button type="button" class="btn btn-success" onclick="redirect_to_graphical_part()">Use case graphical tool</button>
                 </li>
@@ -88,15 +90,15 @@ include 'fill_dashboard/fill_requirement.php';
                 actor_id = $(this).val();
             });
 
-            $("#show_requirement").on('click', function() {
-                requirements = [];
-                $(':checkbox').each(function() {
-                    if ($(this).is(":checked")) {
-                        requirements.push($(this).val());
-                    }
-                });
-                requirements = requirements.toString();
-                $.ajax({
+            $(':checkbox').click(function() {
+                requirement = $(this).val();
+                $(':checkbox').not(this).prop('checked', false);
+            });
+
+            $(".sbmt").click(function(e){
+                if(actor_id && requirement){
+                    e.preventDefault();
+                    $.ajax({
                     url: "modal_dialogs/save_changes.php",
                     method: "POST",
                     data: {
@@ -105,16 +107,20 @@ include 'fill_dashboard/fill_requirement.php';
                     },
                     success: function(data) {
                         $('#result').html(data);
-                        alert('Record updated successfully!');
-                        location.reload();
+                        // alert('Record updated successfully!');
+                        console.log("Record updated successfully!");
+                        $(":checkbox").prop('checked',false);
+                        // clear actor option
+                        $('#actor').val('');
+                        // clear variables
+                        requirement = '';
+                        actor_id = '';
                     }
                 });
+                }
             });
-        });
 
-        // function changes_update(){
-        //     location.reload();
-        // }
+        });
 
         function redirect_to_graphical_part(){
             window.location.replace("http://localhost/lproject_vz16020_part/mxgraph/examples/grapheditor/www/index.php");
